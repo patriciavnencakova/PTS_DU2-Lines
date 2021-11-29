@@ -1,9 +1,13 @@
 package connection;
 
 public class Time {
-    private Integer time;
+    private int time;
 
-    public Time(Integer time) {
+    public Time(int time) {
         this.time = time;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

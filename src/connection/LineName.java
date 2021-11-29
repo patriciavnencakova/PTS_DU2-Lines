@@ -6,4 +6,8 @@ public class LineName {
     public LineName(String lineName) {
         this.lineName = lineName;
     }
+
+    public String getLineName() {
+        return lineName;
+    }
 }

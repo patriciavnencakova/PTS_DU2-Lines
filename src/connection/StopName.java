@@ -6,4 +6,8 @@ public class StopName {
     public StopName(String stopName) {
         this.stopName = stopName;
     }
+
+    public String getStopName() {
+        return stopName;
+    }
 }

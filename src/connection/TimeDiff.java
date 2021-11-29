@@ -1,9 +1,13 @@
 package connection;
 
 public class TimeDiff {
-    private Integer timeDiff;
+    private int timeDiff;
 
-    public TimeDiff(Integer timeDiff) {
+    public TimeDiff(int timeDiff) {
         this.timeDiff = timeDiff;
+    }
+
+    public int getTimeDiff() {
+        return timeDiff;
     }
 }
