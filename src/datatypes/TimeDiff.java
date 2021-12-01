@@ -1,4 +1,4 @@
-package connection;
+package datatypes;
 
 public class TimeDiff {
     private int timeDiff;

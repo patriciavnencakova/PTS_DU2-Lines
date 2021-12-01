@@ -1,4 +1,4 @@
-package connection;
+package datatypes;
 
 public class Tuple<T, S, B> {
     private T I;

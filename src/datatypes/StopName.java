@@ -1,4 +1,4 @@
-package connection;
+package datatypes;
 
 public class StopName {
     private String stopName;
