@@ -1,32 +1,45 @@
 package connection;
 
+import datatypes.LineName;
+import datatypes.Pair;
+import datatypes.StopName;
+import datatypes.Time;
+import interfaces.StopInterface;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Optional;
 
-public class Stop {
+public class Stop implements StopInterface {
     private StopName name;
-    private Optional<Time> reachableAt;
+    private Time reachableAt;
     private Optional<LineName> reachableVia;
     private ArrayList<LineName> lines;
 
     public Stop(StopName name) {
         this.name = name;
-//        this.reachableAt = reachableAt;
-//        this.reachableVia = reachableVia;
-//        this.lines = new ArrayList<>(lines);
+        this.reachableAt = new Time(Integer.MAX_VALUE);
     }
 
+    @Override
     public void updateReachableAt(Time time, Optional<LineName> line) {
-        //zmenit internal state ??
+        if (time.getTime() < reachableAt.getTime()) {
+            reachableAt = time;
+            reachableVia = line;
+        }
     }
 
-    public HashMap<Time,LineName> getReachableAt(){
+    @Override
+    public Pair<Time, LineName> getReachableAt() {
         return null;
     }
 
+    @Override
     public ArrayList<LineName> getLines() {
         return null;
     }
 
+    @Override
+    public StopName getName() {
+        return name;
+    }
 }
