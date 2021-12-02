@@ -7,21 +7,21 @@ import datatypes.Time;
 import interfaces.StopInterface;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class Stop implements StopInterface {
-    private StopName name;
-    private Time reachableAt;
-    private Optional<LineName> reachableVia;
-    private ArrayList<LineName> lines;
+    private final StopName name;
+    private Time reachableAt = new Time(Integer.MAX_VALUE);
+    //TODO optional
+    private LineName reachableVia = null;
+    private final ArrayList<LineName> lines;
 
-    public Stop(StopName name) {
+    public Stop(StopName name, ArrayList<LineName> lines) {
         this.name = name;
-        this.reachableAt = new Time(Integer.MAX_VALUE);
+        this.lines = lines;
     }
 
     @Override
-    public void updateReachableAt(Time time, Optional<LineName> line) {
+    public void updateReachableAt(Time time, LineName line) {
         if (time.getTime() < reachableAt.getTime()) {
             reachableAt = time;
             reachableVia = line;
@@ -30,12 +30,12 @@ public class Stop implements StopInterface {
 
     @Override
     public Pair<Time, LineName> getReachableAt() {
-        return null;
+        return new Pair<>(reachableAt, reachableVia);
     }
 
     @Override
     public ArrayList<LineName> getLines() {
-        return null;
+        return lines;
     }
 
     @Override

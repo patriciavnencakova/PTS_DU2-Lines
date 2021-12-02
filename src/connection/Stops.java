@@ -13,15 +13,28 @@ public class Stops implements StopsInterface {
     public Stops(HashMap<StopName, Stop> stops) {
         this.stops = stops;
     }
-     @Override
-    public Optional<HashMap<StopName, Time>> earliestReachableStopAfter(Time time) {
-        return Optional.empty();
+
+    @Override
+    public Optional<Pair<StopName, Time>> earliestReachableStopAfter(Time time) {
+        Time min = new Time(Integer.MAX_VALUE);
+        StopName stopName = null;
+
+        for (Stop stop : stops.values()) {
+            Time tmp = stop.getReachableAt().getI();
+            if (tmp.getTime() > time.getTime() && tmp.getTime() < min.getTime()) {
+                min = tmp;
+                stopName = stop.getName();
+            }
+        }
+
+        if (stopName == null) return Optional.empty();
+        return Optional.of(new Pair<>(stopName, min));
     }
 
     @Override
     public boolean setStartingStop(StopName stopName, Time time) {
         if (!stops.containsKey(stopName)) return false;
-        stops.get(stopName).updateReachableAt(time, Optional.empty());
+        stops.get(stopName).updateReachableAt(time, null);
         return true;
     }
 
@@ -32,7 +45,7 @@ public class Stops implements StopsInterface {
     }
 
     @Override
-    public HashMap<Time, LineName> getReachableAt(StopName stop) {
-        return null;
+    public Pair<Time, LineName> getReachableAt(StopName stop) {
+        return stops.get(stop).getReachableAt();
     }
 }
