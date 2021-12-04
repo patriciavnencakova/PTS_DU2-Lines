@@ -4,12 +4,13 @@ import datatypes.*;
 import interfaces.LineInterface;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Line implements LineInterface {
     private LineName name;
-    private ArrayList<Time> startingTimes;
-    private StopName firstStop;
-    private ArrayList<LineSegment> lineSegments;
+    private final ArrayList<Time> startingTimes;
+    private final StopName firstStop;
+    private final ArrayList<LineSegment> lineSegments;
 
     public Line(LineName name, ArrayList<Time> startingTimes, StopName firstStop, ArrayList<LineSegment> lineSegments) {
         this.name = name;
@@ -48,7 +49,31 @@ public class Line implements LineInterface {
 
     @Override
     public StopName updateCapacityAndGetPreviousStop(StopName stop, Time time) {
-        return null;
+        if (stop == firstStop) {
+            //TODO neexistuje predosla
+        }
+        StopName currentStop = firstStop;
+        StopName previousStop = null;
+        Time start = startingTimes.get(0);
+        TimeDiff difference = null;
+
+        int indeOfLineSegment = 0;
+        while (currentStop != stop) {
+            if (indeOfLineSegment >= lineSegments.size()) {
+                //TODO zastavka sa nenachadza v ziadnom lineSegmente
+            }
+            Pair<Time, StopName> nextStop = lineSegments.get(indeOfLineSegment).nextStop(start);
+            difference = new TimeDiff(nextStop.getI().getTime() - start.getTime());
+            start = nextStop.getI();
+            previousStop = currentStop;
+            currentStop = nextStop.getII();
+            indeOfLineSegment++;
+        }
+
+        assert difference != null;
+        Time newTime = new Time(time.getTime() - difference.getTimeDiff());
+        lineSegments.get(indeOfLineSegment).incrementCapacity(newTime);
+        return previousStop;
     }
 
     public void updateAllPossible(int indexOfStop, Time currentTime) {
