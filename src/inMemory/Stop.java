@@ -1,4 +1,4 @@
-package connection;
+package inMemory;
 
 import datatypes.LineName;
 import datatypes.Pair;
@@ -10,14 +10,16 @@ import java.util.ArrayList;
 
 public class Stop implements StopInterface {
     private final StopName name;
-    private Time reachableAt = new Time(Integer.MAX_VALUE);
+    private Time reachableAt;
     //TODO optional
-    private LineName reachableVia = null;
+    private LineName reachableVia;
     private final ArrayList<LineName> lines;
 
     public Stop(StopName name, ArrayList<LineName> lines) {
         this.name = name;
         this.lines = lines;
+        this.reachableAt = new Time(Integer.MAX_VALUE);
+        this.reachableVia = null;
     }
 
     @Override

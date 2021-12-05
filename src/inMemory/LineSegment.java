@@ -1,16 +1,17 @@
-package connection;
+package inMemory;
 
 import datatypes.*;
+import inMemory.Stop;
 import interfaces.LineSegmentInterface;
 
 import java.util.HashMap;
 
 public class LineSegment implements LineSegmentInterface {
-    private Stop nextStop;
-    private TimeDiff timeToNextStop;
-    private HashMap<Time, Integer> numberOfPassengers;
-    private Integer capacity;
-    private LineName lineName;
+    private final Stop nextStop;
+    private final TimeDiff timeToNextStop;
+    private final HashMap<Time, Integer> numberOfPassengers;
+    private final Integer capacity;
+    private final LineName lineName;
 
     public LineSegment(Stop nextStop, TimeDiff timeToNextStop, HashMap<Time, Integer> numberOfPassengers, Integer capacity, LineName lineName) {
         this.nextStop = nextStop;

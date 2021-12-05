@@ -1,10 +1,9 @@
-package connection;
+package inMemory;
 
 import datatypes.*;
 import interfaces.LineInterface;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Line implements LineInterface {
     private LineName name;
