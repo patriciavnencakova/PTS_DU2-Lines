@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.Optional;
 
 public class ConnectionSearch {
-    private Lines lines;
-    private Stops stops;
+    private final Lines lines;
+    private final Stops stops;
 
     public ConnectionSearch(Lines lines, Stops stops) {
         this.lines = lines;

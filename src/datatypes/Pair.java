@@ -1,8 +1,8 @@
 package datatypes;
 
 public class Pair<T, S> {
-    private T I;
-    private S II;
+    private final T I;
+    private final S II;
 
     public Pair(T I, S II) {
         this.I = I;

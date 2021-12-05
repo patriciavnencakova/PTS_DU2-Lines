@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class Stop implements StopInterface {
     private final StopName name;
+    private final ArrayList<LineName> lines;
     private Time reachableAt;
     //TODO optional
     private LineName reachableVia;
-    private final ArrayList<LineName> lines;
 
     public Stop(StopName name, ArrayList<LineName> lines) {
         this.name = name;

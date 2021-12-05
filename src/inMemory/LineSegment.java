@@ -1,7 +1,6 @@
 package inMemory;
 
 import datatypes.*;
-import inMemory.Stop;
 import interfaces.LineSegmentInterface;
 
 import java.util.HashMap;

@@ -1,6 +1,10 @@
 package connection;
 
-import datatypes.*;
+import datatypes.LineName;
+import datatypes.Pair;
+import datatypes.StopName;
+import datatypes.Time;
+import inMemory.Stop;
 import interfaces.StopsInterface;
 
 import java.util.ArrayList;
