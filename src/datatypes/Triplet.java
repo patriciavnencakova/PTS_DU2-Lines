@@ -1,9 +1,9 @@
 package datatypes;
 
 public class Triplet<T, S, B> {
-    private T I;
-    private S II;
-    private B III;
+    private final T I;
+    private final S II;
+    private final B III;
 
     public Triplet(T I, S II, B III) {
         this.I = I;

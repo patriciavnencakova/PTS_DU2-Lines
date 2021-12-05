@@ -1,7 +1,7 @@
 package datatypes;
 
 public class TimeDiff {
-    private int timeDiff;
+    private final int timeDiff;
 
     public TimeDiff(int timeDiff) {
         this.timeDiff = timeDiff;

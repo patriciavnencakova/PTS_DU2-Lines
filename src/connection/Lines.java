@@ -1,8 +1,13 @@
 package connection;
 
-import datatypes.*;
+import datatypes.LineName;
+import datatypes.StopName;
+import datatypes.Time;
+import inMemory.Line;
 import interfaces.LinesInterface;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Lines implements LinesInterface {
     HashMap<LineName, Line> lines;
@@ -15,7 +20,7 @@ public class Lines implements LinesInterface {
     public void updateReachable(ArrayList<LineName> lineNames, StopName stop, Time time) {
         for (LineName lineName : lineNames) {
             if (!lines.containsKey(lineName)) continue;
-           lines.get(lineName).updateReachable(time, stop);
+            lines.get(lineName).updateReachable(time, stop);
         }
     }
 

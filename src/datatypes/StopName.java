@@ -1,7 +1,7 @@
 package datatypes;
 
 public class StopName {
-    private String stopName;
+    private final String stopName;
 
     public StopName(String stopName) {
         this.stopName = stopName;

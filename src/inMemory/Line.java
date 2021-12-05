@@ -6,10 +6,10 @@ import interfaces.LineInterface;
 import java.util.ArrayList;
 
 public class Line implements LineInterface {
-    private LineName name;
     private final ArrayList<Time> startingTimes;
     private final StopName firstStop;
     private final ArrayList<LineSegment> lineSegments;
+    private final LineName name;
 
     public Line(LineName name, ArrayList<Time> startingTimes, StopName firstStop, ArrayList<LineSegment> lineSegments) {
         this.name = name;

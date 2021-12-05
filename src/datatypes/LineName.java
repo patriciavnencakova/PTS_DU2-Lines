@@ -1,7 +1,7 @@
 package datatypes;
 
 public class LineName {
-    private String lineName;
+    private final String lineName;
 
     public LineName(String lineName) {
         this.lineName = lineName;
