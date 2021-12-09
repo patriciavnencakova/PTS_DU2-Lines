@@ -4,7 +4,8 @@ import datatypes.LineName;
 import datatypes.Pair;
 import datatypes.StopName;
 import datatypes.Time;
-import inMemory.Stop;
+import interfaces.FactoryInterface;
+import interfaces.StopInterface;
 import interfaces.StopsInterface;
 
 import java.util.ArrayList;
@@ -12,10 +13,11 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class Stops implements StopsInterface {
-    HashMap<StopName, Stop> stops;
+    HashMap<StopName, StopInterface> stops;
+    FactoryInterface factory;
 
-    public Stops(HashMap<StopName, Stop> stops) {
-        this.stops = stops;
+    public Stops(FactoryInterface factory) {
+        this.factory = factory;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class Stops implements StopsInterface {
         Time min = new Time(Integer.MAX_VALUE);
         StopName stopName = null;
 
-        for (Stop stop : stops.values()) {
+        for (StopInterface stop : stops.values()) {
             Time tmp = stop.getReachableAt().getI();
             if (tmp.getTime() > time.getTime() && tmp.getTime() < min.getTime()) {
                 min = tmp;
@@ -36,10 +38,9 @@ public class Stops implements StopsInterface {
     }
 
     @Override
-    public boolean setStartingStop(StopName stopName, Time time) {
-        if (!stops.containsKey(stopName)) return false;
+    public void setStartingStop(StopName stopName, Time time) {
+        if (!stops.containsKey(stopName)) addStop(stopName);
         stops.get(stopName).updateReachableAt(time, null);
-        return true;
     }
 
     @Override
@@ -51,5 +52,14 @@ public class Stops implements StopsInterface {
     @Override
     public Pair<Time, LineName> getReachableAt(StopName stop) {
         return stops.get(stop).getReachableAt();
+    }
+
+    public void addStop(StopName stop) {
+        Optional<StopInterface> s = factory.createStop(stop);
+        if (s.isEmpty()) {
+            //TODO exception
+        } else {
+            stops.put(stop, s.get());
+        }
     }
 }
