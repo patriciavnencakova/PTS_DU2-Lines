@@ -1,4 +1,4 @@
-package inMemory;
+package connection;
 
 import datatypes.*;
 import interfaces.LineSegmentInterface;

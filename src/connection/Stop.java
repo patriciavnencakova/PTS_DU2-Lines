@@ -1,4 +1,4 @@
-package inMemory;
+package connection;
 
 import datatypes.LineName;
 import datatypes.Pair;
