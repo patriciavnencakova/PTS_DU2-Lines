@@ -56,7 +56,8 @@ public class ConnectionSearch {
             return null;
         }
 
-        //TODO pridat clean
+        lines.clean();
+        stops.clean();
 
         Collections.reverse(crossedStops);
         return new ConnectionData(from, to, time, earliestReachableStopAfter.get().getII(), crossedStops);
