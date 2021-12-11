@@ -16,4 +16,6 @@ public interface StopsInterface {
     ArrayList<LineName> getLines(StopName stopName);
 
     Pair<Time, LineName> getReachableAt(StopName stop);
+
+    void clean();
 }

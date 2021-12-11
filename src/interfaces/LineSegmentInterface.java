@@ -1,7 +1,7 @@
 package interfaces;
 
 import datatypes.*;
-import inMemory.Stop;
+import connection.Stop;
 
 public interface LineSegmentInterface {
     Pair<Time, StopName> nextStop(Time startTime);

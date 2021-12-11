@@ -1,7 +1,6 @@
 package interfaces;
 
 import datatypes.*;
-import inMemory.Stop;
 
 import java.util.Optional;
 
