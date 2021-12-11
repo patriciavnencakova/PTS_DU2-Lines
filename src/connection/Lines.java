@@ -3,23 +3,26 @@ package connection;
 import datatypes.LineName;
 import datatypes.StopName;
 import datatypes.Time;
-import inMemory.Line;
+import interfaces.FactoryInterface;
+import interfaces.LineInterface;
 import interfaces.LinesInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class Lines implements LinesInterface {
-    HashMap<LineName, Line> lines;
+    HashMap<LineName, LineInterface> lines;
+    FactoryInterface factory;
 
-    public Lines(HashMap<LineName, Line> lines) {
-        this.lines = lines;
+    public Lines(FactoryInterface factory) {
+        this.factory = factory;
     }
 
     @Override
     public void updateReachable(ArrayList<LineName> lineNames, StopName stop, Time time) {
         for (LineName lineName : lineNames) {
-            if (!lines.containsKey(lineName)) continue;
+            if (!lines.containsKey(lineName)) addLine(lineName);
             lines.get(lineName).updateReachable(time, stop);
         }
     }
@@ -35,5 +38,14 @@ public class Lines implements LinesInterface {
     @Override
     public void clean() {
         lines = new HashMap<>();
+    }
+
+    public void addLine(LineName line) {
+        Optional<LineInterface> s = factory.createLine(line);
+        if (s.isEmpty()) {
+            //TODO exception
+        } else {
+            lines.put(line, s.get());
+        }
     }
 }

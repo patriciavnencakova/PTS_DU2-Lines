@@ -54,6 +54,11 @@ public class Stops implements StopsInterface {
         return stops.get(stop).getReachableAt();
     }
 
+    @Override
+    public void clean() {
+        stops = new HashMap<>();
+    }
+
     public void addStop(StopName stop) {
         Optional<StopInterface> s = factory.createStop(stop);
         if (s.isEmpty()) {
